@@ -1,0 +1,36 @@
+= Новости (модуль для Redmine)
+
+Исправляет встроенный в Redmine модуль \"Новости\" в части отображения новостей (index и show).
+
+= Redmine news
+
+The fix for News-module on Redmine (as plugin).
+
+== Installation
+
+  cd vendor/plugins
+  git clone git://github.com/rubynovich/redmine_news.git
+  cd ../..
+  rake db:migrate:plugins RAILS_ENV=production
+
+*or*
+
+  ./script/plugin -v install git://github.com/rubynovich/redmine_news.git
+  rake db:migrate:plugins RAILS_ENV=production
+
+== Update
+
+  cd vendor/plugins/redmine_news
+  git pull
+  cd ../../..
+  rake db:migrate:plugins RAILS_ENV=production
+
+*or*
+
+  ./script/plugin update
+  rake db:migrate:plugins RAILS_ENV=production
+
+== Remove
+
+  rake db:migrate:plugin NAME=redmine_news VERSION=0 RAILS_ENV=production
+  ./script/plugin remove redmine_news
