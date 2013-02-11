@@ -20,9 +20,9 @@
       = link_to l(:button_cancel), "#", :onclick => 'Element.hide("edit-news"); return false;'
     #preview.wiki
 
-%p
-  - unless @news.summary.blank?
-    %em= textilizable(@news, :summary)
+- if @news.summary.present?
+  %em= textilizable(@news, :summary)
+
 .wiki= textilizable(@news, :description)
 %span.author= authoring @news.created_on, @news.author
 
