@@ -23,7 +23,6 @@
 %p
   - unless @news.summary.blank?
     %em= textilizable(@news, :summary)
-
 .wiki= textilizable(@news, :description)
 %span.author= authoring @news.created_on, @news.author
 
