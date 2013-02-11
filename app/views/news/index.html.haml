@@ -21,8 +21,9 @@
   %p.nodata= l(:label_no_data)
 - else
   - @newss.each do |news|
-    .contextual
-      %p.author= authoring news.created_on, news.author
+    - if news.summary.present?
+      .contextual
+        %p.author= authoring news.created_on, news.author
     %h3
       = avatar(news.author, :size => "24")
       = link_to_project(news.project) + ': ' unless news.project == @project
