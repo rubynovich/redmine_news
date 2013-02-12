@@ -15,9 +15,15 @@
       = render :partial => 'form', :locals => { :f => f }
       = link_to_attachments @news
       = submit_tag l(:button_save)
-      = link_to_remote l(:label_preview), { :url => preview_news_path(:project_id => @project), :method => 'get', :update => 'preview', :with => "Form.serialize('news-form')"}, :accesskey => accesskey(:preview)
+      - if Rails::VERSION::MAJOR >= 3
+        = preview_link preview_news_path(:project_id => @project), 'news-form'
+      - else
+        = link_to_remote l(:label_preview), { :url => preview_news_path(:project_id => @project), :method => 'get', :update => 'preview', :with => "Form.serialize('news-form')"}, :accesskey => accesskey(:preview)
       = "|"
-      = link_to l(:button_cancel), "#", :onclick => 'Element.hide("edit-news"); return false;'
+      - if Rails::VERSION::MAJOR >= 3
+        = link_to l(:button_cancel), "#", :onclick => '$("#add-news").hide()'
+      - else
+        = link_to l(:button_cancel), "#", :onclick => 'Element.hide("edit-news"); return false;'
     #preview.wiki
 
 - if @news.summary.present?

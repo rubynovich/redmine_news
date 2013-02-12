@@ -9,9 +9,15 @@
     - labelled_form_for @news, :url => project_news_index_path(@project), :html => { :id => 'news-form', :multipart => true } do |f|
       = render :partial => 'news/form', :locals => { :f => f }
       = submit_tag l(:button_create)
-      = link_to_remote l(:label_preview), {:url => preview_news_path(:project_id => @project), :method => 'get', :update => 'preview', :with => "Form.serialize('news-form')"}, :accesskey => accesskey(:preview)
+      - if Rails::VERSION::MAJOR >= 3
+        = preview_link preview_news_path(:project_id => @project), 'news-form'
+      - else
+        = link_to_remote l(:label_preview), {:url => preview_news_path(:project_id => @project), :method => 'get', :update => 'preview', :with => "Form.serialize('news-form')"}, :accesskey => accesskey(:preview)
       = "|"
-      = link_to l(:button_cancel), "#", :onclick => 'Element.hide("add-news")'
+      - if Rails::VERSION::MAJOR >= 3
+        = link_to l(:button_cancel), "#", :onclick => '$("#add-news").hide()'
+      - else
+        = link_to l(:button_cancel), "#", :onclick => 'Element.hide("add-news")'
 
   #preview.wiki
 
