@@ -1,9 +1,9 @@
 require 'redmine'
 
 Redmine::Plugin.register :redmine_news do
-  name 'Новости'
+  name 'News'
   author 'Roman Shipiev'
-  description 'Исправляет встроенный в Redmine модуль \"Новости\" в части отображения новостей (index и show).'
+  description 'Fix News-module (views for index and show)'
   version '0.0.1'
   url 'https://github.com/rubynovich/redmine_news.git'
   author_url 'http://roman.shipiev.me'
